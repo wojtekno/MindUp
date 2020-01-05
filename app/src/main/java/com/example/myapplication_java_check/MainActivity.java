@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.Random;
+import com.example.myapplication_java_check.model_view.AlphabetGameModelView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,6 +15,9 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
     private final int SIMULTANEOUS_DIFFERENCE = 200;
+
+    private AlphabetGameModelView alphabetGameModelView;
+
     @BindView(R.id.startButton)
     Button startBut;
     @BindView(R.id.leftB)
@@ -27,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     TextView handV;
     @BindView(R.id.textViewtest)
     TextView testText;
-    char[] alphabet;
-    int currentLetter;
     long leftClick = 0;
     long rightClick = 0;
 
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+        alphabetGameModelView = new AlphabetGameModelView();
 
     }
 
@@ -66,43 +67,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void startGame(View view) {
 
-        letterV.setText(Character.toString(alphabet[0]));
-        generateHand();
+        letterV.setText(Character.toString(alphabetGameModelView.nextLetter()));
+        handV.setText((Character.toString(alphabetGameModelView.generateHand())));
         startBut.setVisibility(View.GONE);
         leftB.setVisibility(View.VISIBLE);
         rightB.setVisibility(View.VISIBLE);
 
     }
 
-    public void nextLetter() {
-        if (currentLetter == alphabet.length - 1) {
-            currentLetter = 0;
-        } else {
-            currentLetter++;
-        }
-        letterV.setText(Character.toString(alphabet[currentLetter]));
-    }
-
     private void buttonPressed(boolean simultan) {
         if (!simultan) {
-            nextLetter();
-            generateHand();
+            letterV.setText(Character.toString(alphabetGameModelView.nextLetter()));
+            handV.setText(Character.toString(alphabetGameModelView.generateHand()));
+            ;
         }
-    }
-
-    private void generateHand() {
-        int number = new Random().nextInt(3);
-        char hand;
-        switch (number) {
-            case 0:
-                hand = 'L';
-                break;
-            case 1:
-                hand = 'R';
-                break;
-            default:
-                hand = 'B';
-        }
-        handV.setText(Character.toString(hand));
     }
 }
