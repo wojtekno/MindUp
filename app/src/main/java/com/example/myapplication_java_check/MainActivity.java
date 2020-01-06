@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.myapplication_java_check.model_view.AlphabetGameModelView;
+import com.example.myapplication_java_check.view_model.AlphabetGameViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,19 +16,19 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
     private final int SIMULTANEOUS_DIFFERENCE = 200;
 
-    private AlphabetGameModelView alphabetGameModelView;
+    private AlphabetGameViewModel alphabetGameViewModel;
 
     @BindView(R.id.startButton)
     Button startBut;
-    @BindView(R.id.leftB)
+    @BindView(R.id.leftButton)
     Button leftB;
-    @BindView(R.id.rightB)
+    @BindView(R.id.rightButton)
     Button rightB;
-    @BindView(R.id.letterView)
+    @BindView(R.id.letterTextView)
     TextView letterV;
-    @BindView(R.id.handView)
+    @BindView(R.id.handTextView)
     TextView handV;
-    @BindView(R.id.textViewtest)
+    @BindView(R.id.testTextView)
     TextView testText;
     long leftClick = 0;
     long rightClick = 0;
@@ -39,36 +39,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        alphabetGameModelView = new AlphabetGameModelView();
+        alphabetGameViewModel = new AlphabetGameViewModel();
 
     }
 
-    @OnClick(R.id.leftB)
+    @OnClick(R.id.leftButton)
     public void pressLeft() {
         leftClick = System.currentTimeMillis();
-        buttonPressed(evaluateSimultaneous("left"));
+        buttonPressed(evaluateSimultaneous());
     }
 
-    @OnClick(R.id.rightB)
+    @OnClick(R.id.rightButton)
     public void pressRight() {
         rightClick = System.currentTimeMillis();
-        buttonPressed(evaluateSimultaneous("right"));
+        buttonPressed(evaluateSimultaneous());
     }
 
-    private boolean evaluateSimultaneous(String button) {
+    private boolean evaluateSimultaneous() {
         if (Math.abs(rightClick - leftClick) < SIMULTANEOUS_DIFFERENCE) {
             testText.setText("BOTH");
             return true;
         } else {
-            testText.setText("");
             return false;
         }
     }
 
     public void startGame(View view) {
 
-        letterV.setText(Character.toString(alphabetGameModelView.nextLetter()));
-        handV.setText((Character.toString(alphabetGameModelView.generateHand())));
+        letterV.setText(Character.toString(alphabetGameViewModel.nextLetter()));
+        handV.setText((Character.toString(alphabetGameViewModel.generateHand())));
         startBut.setVisibility(View.GONE);
         leftB.setVisibility(View.VISIBLE);
         rightB.setVisibility(View.VISIBLE);
@@ -77,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void buttonPressed(boolean simultan) {
         if (!simultan) {
-            letterV.setText(Character.toString(alphabetGameModelView.nextLetter()));
-            handV.setText(Character.toString(alphabetGameModelView.generateHand()));
+            letterV.setText(Character.toString(alphabetGameViewModel.nextLetter()));
+            handV.setText(Character.toString(alphabetGameViewModel.generateHand()));
             ;
         }
     }

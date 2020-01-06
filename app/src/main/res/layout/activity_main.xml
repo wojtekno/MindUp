@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/letterView"
+        android:id="@+id/letterTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Alphabet"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.291" />
 
     <TextView
-        android:id="@+id/handView"
+        android:id="@+id/handTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Game"
@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/letterView"
+        app:layout_constraintTop_toBottomOf="@+id/letterTextView"
         app:layout_constraintVertical_bias="0.097" />
 
     <Button
@@ -41,12 +41,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/handView"
+        app:layout_constraintTop_toBottomOf="@+id/handTextView"
         app:layout_constraintVertical_bias="0.139"
         android:onClick="startGame"/>
 
     <Button
-        android:id="@+id/rightB"
+        android:id="@+id/rightButton"
         android:layout_width="104dp"
         android:layout_height="0dp"
         android:text="Press R"
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/leftB"
+        android:id="@+id/leftButton"
         android:layout_width="104dp"
         android:layout_height="0dp"
         android:text="Press L"
@@ -70,7 +70,7 @@
         />
 
     <TextView
-        android:id="@+id/textViewtest"
+        android:id="@+id/testTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""

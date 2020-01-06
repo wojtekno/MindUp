@@ -6,8 +6,7 @@ public class AlphabetGame {
     private final char RIGHT = 'R';
     private final char LEFT = 'L';
     private final char BOTH = 'B';
-    private char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-    private char currentLetter;
+    private final char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 
 
     public char getCharFromAlphabet(int i){

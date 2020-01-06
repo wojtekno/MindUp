@@ -1,15 +1,15 @@
-package com.example.myapplication_java_check.model_view;
+package com.example.myapplication_java_check.view_model;
 
 import com.example.myapplication_java_check.model.AlphabetGame;
 
 import java.util.Random;
 
-public class AlphabetGameModelView {
+public class AlphabetGameViewModel {
 
     private AlphabetGame alphabetGame;
     private int currentLetter = -1;
 
-    public AlphabetGameModelView() {
+    public AlphabetGameViewModel() {
         alphabetGame = new AlphabetGame();
     }
 
