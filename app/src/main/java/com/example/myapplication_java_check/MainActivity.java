@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication_java_check.model.AlphabetGame;
 import com.example.myapplication_java_check.view_model.AlphabetGameViewModel;
 
 import butterknife.BindView;
@@ -16,6 +17,7 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
     private final int SIMULTANEOUS_DIFFERENCE = 200;
 
+    private AlphabetGame alphabetGame = new AlphabetGame();
     private AlphabetGameViewModel alphabetGameViewModel;
 
     @BindView(R.id.startButton)
@@ -25,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.rightButton)
     Button rightB;
     @BindView(R.id.letterTextView)
-    TextView letterV;
+    TextView letterTextView;
     @BindView(R.id.handTextView)
-    TextView handV;
+    TextView handTextView;
     @BindView(R.id.testTextView)
-    TextView testText;
+    TextView testTextView;
     long leftClick = 0;
     long rightClick = 0;
 
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        alphabetGameViewModel = new AlphabetGameViewModel();
+        alphabetGameViewModel = new AlphabetGameViewModel(alphabetGame);
 
     }
 
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean evaluateSimultaneous() {
         if (Math.abs(rightClick - leftClick) < SIMULTANEOUS_DIFFERENCE) {
-            testText.setText("BOTH");
+            testTextView.setText("BOTH");
             return true;
         } else {
             return false;
@@ -66,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void startGame(View view) {
 
-        letterV.setText(Character.toString(alphabetGameViewModel.nextLetter()));
-        handV.setText((Character.toString(alphabetGameViewModel.generateHand())));
+        letterTextView.setText(Character.toString(alphabetGameViewModel.nextLetter()));
+        handTextView.setText((Character.toString(alphabetGameViewModel.generateHand())));
         startBut.setVisibility(View.GONE);
         leftB.setVisibility(View.VISIBLE);
         rightB.setVisibility(View.VISIBLE);
@@ -76,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void buttonPressed(boolean simultan) {
         if (!simultan) {
-            letterV.setText(Character.toString(alphabetGameViewModel.nextLetter()));
-            handV.setText(Character.toString(alphabetGameViewModel.generateHand()));
+            letterTextView.setText(Character.toString(alphabetGameViewModel.nextLetter()));
+            handTextView.setText(Character.toString(alphabetGameViewModel.generateHand()));
             ;
         }
     }

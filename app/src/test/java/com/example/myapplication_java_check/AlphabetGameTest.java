@@ -17,11 +17,11 @@ public class AlphabetGameTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void getCharFromAlphabetCharLengthZero (){
+    public void getCharFromAlphabetOutOfBoundException(){
         game.getCharFromAlphabet(45);    }
 
     @Test
     public void getCharFromAlphabetCharFirstLetter(){
-        assertEquals(game.getCharFromAlphabet(0), 'A');
+        assertEquals('A',game.getCharFromAlphabet(0));
     }
 }

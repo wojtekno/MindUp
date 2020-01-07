@@ -9,8 +9,8 @@ public class AlphabetGameViewModel {
     private AlphabetGame alphabetGame;
     private int currentLetter = -1;
 
-    public AlphabetGameViewModel() {
-        alphabetGame = new AlphabetGame();
+    public AlphabetGameViewModel(AlphabetGame alphabetGame) {
+        this.alphabetGame = alphabetGame;
     }
 
     public char nextLetter() {
