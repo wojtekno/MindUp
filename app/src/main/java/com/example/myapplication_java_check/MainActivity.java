@@ -3,6 +3,7 @@ package com.example.myapplication_java_check;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     TextView testTextView;
     long leftClick = 0;
     long rightClick = 0;
+    final long GAME_TIME = 60000;
 
 
     @Override
@@ -74,6 +76,20 @@ public class MainActivity extends AppCompatActivity {
         startBut.setVisibility(View.GONE);
         leftB.setVisibility(View.VISIBLE);
         rightB.setVisibility(View.VISIBLE);
+        new CountDownTimer(GAME_TIME, 1000){
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if (millisUntilFinished < 4000){
+                    testTextView.setText(String.valueOf((int)millisUntilFinished/1000));
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                testTextView.setText("Finish");
+            }
+        }.start();
 
     }
 
