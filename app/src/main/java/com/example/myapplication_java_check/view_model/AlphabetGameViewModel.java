@@ -4,11 +4,16 @@ import com.example.myapplication_java_check.model.AlphabetGame;
 
 import java.util.Random;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class AlphabetGameViewModel {
 
-    private AlphabetGame alphabetGame;
+    AlphabetGame alphabetGame;
     private int currentLetter = -1;
 
+    @Inject
     public AlphabetGameViewModel(AlphabetGame alphabetGame) {
         this.alphabetGame = alphabetGame;
     }

@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.myapplication_java_check.model.AlphabetGame;
 import com.example.myapplication_java_check.view_model.AlphabetGameViewModel;
+import com.example.myapplication_java_check.view_model.AppContainer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,8 +17,7 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
     private final int SIMULTANEOUS_DIFFERENCE = 200;
 
-    private AlphabetGame alphabetGame = new AlphabetGame();
-    private AlphabetGameViewModel alphabetGameViewModel;
+    AlphabetGameViewModel alphabetGameViewModel;
 
     @BindView(R.id.startButton)
     Button startBut;
@@ -41,8 +40,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        alphabetGameViewModel = new AlphabetGameViewModel(alphabetGame);
 
+        AppContainer appContainer = ((MyApplication) getApplication()).getAppContainer();
+        alphabetGameViewModel = appContainer.alphabetGameViewModel();
     }
 
     @OnClick(R.id.leftButton)
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             testTextView.setText("BOTH");
             return true;
         } else {
+            testTextView.setText("");
             return false;
         }
     }
