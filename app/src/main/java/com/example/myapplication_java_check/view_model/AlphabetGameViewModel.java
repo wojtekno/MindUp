@@ -18,7 +18,12 @@ public class AlphabetGameViewModel {
         this.alphabetGame = alphabetGame;
     }
 
-    public char nextLetter() {
+    public char getFirstLetter(){
+        return alphabetGame.getCharFromAlphabet(0);
+
+    }
+
+    public char getNextLetter() {
         if (currentLetter == alphabetGame.getAlphabetLength() - 1) {
             currentLetter = 0;
             return alphabetGame.getCharFromAlphabet(0);

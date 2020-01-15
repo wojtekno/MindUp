@@ -29,7 +29,7 @@ public class AlphabetGameViewModelTest {
     public void nextLetterFirstTime(){
         when(game.getAlphabetLength()).thenReturn(32);
         when(game.getCharFromAlphabet(0)).thenReturn('A');
-        assertEquals('A',alphabetGameViewModel.nextLetter());
+        assertEquals('A',alphabetGameViewModel.getNextLetter());
     }
 
     @Test
@@ -38,8 +38,8 @@ public class AlphabetGameViewModelTest {
         when(game.getCharFromAlphabet(0)).thenReturn('A');
         when(game.getCharFromAlphabet(1)).thenReturn('B');
 
-        assertEquals('A',alphabetGameViewModel.nextLetter());
-        assertEquals('B',alphabetGameViewModel.nextLetter());
+        assertEquals('A',alphabetGameViewModel.getNextLetter());
+        assertEquals('B',alphabetGameViewModel.getNextLetter());
     }
 
     @Test
@@ -47,9 +47,9 @@ public class AlphabetGameViewModelTest {
         when(game.getAlphabetLength()).thenReturn(32);
         when(game.getCharFromAlphabet(31)).thenReturn('Z');
         for (int i =0 ; i < 31; i++){
-            alphabetGameViewModel.nextLetter();
+            alphabetGameViewModel.getNextLetter();
         }
-        assertEquals('Z',alphabetGameViewModel.nextLetter());
+        assertEquals('Z',alphabetGameViewModel.getNextLetter());
     }
 
     @Test
@@ -57,9 +57,9 @@ public class AlphabetGameViewModelTest {
         when(game.getAlphabetLength()).thenReturn(32);
         when(game.getCharFromAlphabet(0)).thenReturn('A');
         for (int i =0 ; i < 32; i++){
-            alphabetGameViewModel.nextLetter();
+            alphabetGameViewModel.getNextLetter();
         }
-        assertEquals('A',alphabetGameViewModel.nextLetter());
+        assertEquals('A',alphabetGameViewModel.getNextLetter());
     }
 
 }
