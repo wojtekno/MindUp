@@ -3,7 +3,6 @@ package com.example.myapplication_java_check;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -25,15 +24,19 @@ public class AlphabetGameActivity extends AppCompatActivity {
     Button rightB;
     @BindView(R.id.startButton)
     Button startB;
+    @BindView(R.id.infoButton)
+    Button infoB;
 
-    @BindView(R.id.letterTextView)
+    @BindView(R.id.alphabetGameTextView)
     TextView letterTextView;
     @BindView(R.id.handTextView)
     TextView handTextView;
-    @BindView(R.id.testTextView)
-    TextView testTextView;
+    @BindView(R.id.upperDescriptionTextView)
+    TextView upperDescriptionTextView;
     @BindView(R.id.lowerDescriptionTextView)
-    TextView lowerTextView;
+    TextView lowerDescriptionTextView;
+    @BindView(R.id.communicatorTextView)
+    TextView communicatorTextView;
 
 
     final long GAME_TIME = 10000;
@@ -56,6 +59,7 @@ public class AlphabetGameActivity extends AppCompatActivity {
         AppContainer appContainer = ((MyApplication) getApplication()).getAppContainer();
         alphabetGameViewModel = appContainer.alphabetGameViewModel();
         prepareView();
+        setInfoVisible(true);
 
     }
 
@@ -69,7 +73,7 @@ public class AlphabetGameActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-prepareView();
+//        prepareView();
 //        countDownStart();
     }
 
@@ -77,30 +81,38 @@ prepareView();
         leftB.setVisibility(View.VISIBLE);
         rightB.setVisibility(View.VISIBLE);
         startB.setVisibility(View.VISIBLE);
-        testTextView.setText("Reading out loud\n the alphabet letter");
-        lowerTextView.setText("Press as fast as you can corresponding button\n" +
+        leftB.setClickable(false);
+        rightB.setClickable(false);
+
+        upperDescriptionTextView.setText("Reading out loud\n the alphabet letter");
+        lowerDescriptionTextView.setVisibility(View.VISIBLE);
+        lowerDescriptionTextView.setText("Press as fast as you can corresponding button\n" +
                 "Left for \"L\"\n" +
                 "Right for \"R\"\n" +
                 "Both at the same time for \"B\"");
 
-
-
-        letterTextView.setText(Character.toString(alphabetGameViewModel.getFirstLetter()));
+        letterTextView.setText("J");
         handTextView.setText("B");
-        leftB.setClickable(false);
-        rightB.setClickable(false);
 
+    }
+
+    private void setInfoVisible(boolean state) {
+        if (state) {
+            infoB.setVisibility(View.GONE);
+            upperDescriptionTextView.setVisibility(View.VISIBLE);
+            lowerDescriptionTextView.setVisibility(View.VISIBLE);
+        } else {
+            upperDescriptionTextView.setVisibility(View.GONE);
+            lowerDescriptionTextView.setVisibility(View.GONE);
+        }
     }
 
     public void startGame() {
         leftB.setClickable(true);
         rightB.setClickable(true);
-        leftB.setVisibility(View.VISIBLE);
-        rightB.setVisibility(View.VISIBLE);
-        startB.setVisibility(View.GONE);
-        letterTextView.setText(Character.toString(alphabetGameViewModel.getFirstLetter()));
+        alphabetGameViewModel.resetLetter();
+        letterTextView.setText(Character.toString(alphabetGameViewModel.getNextLetter()));
         handTextView.setText((Character.toString(alphabetGameViewModel.generateHand())));
-        lowerTextView.setText("");
 
 
         new CountDownTimer(GAME_TIME, 1000) {
@@ -108,13 +120,13 @@ prepareView();
             @Override
             public void onTick(long millisUntilFinished) {
                 if (millisUntilFinished < 4000) {
-                    testTextView.setText(String.valueOf((int) millisUntilFinished / 1000));
+                    communicatorTextView.setText(String.valueOf((int) millisUntilFinished / 1000));
                 }
             }
 
             @Override
             public void onFinish() {
-                testTextView.setText("Finish");
+                communicatorTextView.setText("Finish");
                 stopGame();
             }
         }.start();
@@ -125,8 +137,10 @@ prepareView();
     public void stopGame() {
         leftB.setClickable(false);
         rightB.setClickable(false);
-        testTextView.setText("Game\nfinished");
+        communicatorTextView.setText("Game\nfinished");
+        delayErasingTextView(communicatorTextView);
         startB.setVisibility(View.VISIBLE);
+        infoB.setVisibility(View.VISIBLE);
     }
 
     @OnClick(R.id.leftButton)
@@ -142,8 +156,10 @@ prepareView();
     }
 
     @OnClick(R.id.startButton)
-    public void pressStartAgain() {
-        prepareView();
+    public void pressStart() {
+        startB.setVisibility(View.GONE);
+        infoB.setVisibility(View.GONE);
+        setInfoVisible(false);
         countDownStart();
     }
 
@@ -152,17 +168,38 @@ prepareView();
 
             @Override
             public void onTick(long millisUntilFinished) {
-                testTextView.setText(String.valueOf((int) millisUntilFinished / 1000));
+                communicatorTextView.setText(String.valueOf((int) millisUntilFinished / 1000));
 
             }
 
             @Override
             public void onFinish() {
-                testTextView.setText("START");
+                communicatorTextView.setText("START");
+                delayErasingTextView(communicatorTextView);
                 startGame();
 
             }
         }.start();
+    }
+
+    private void delayErasingTextView(TextView textView) {
+        new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                textView.setText("");
+            }
+        }.start();
+    }
+
+    @OnClick(R.id.infoButton)
+    public void pressInfoB() {
+        setInfoVisible(true);
+        infoB.setVisibility(View.GONE);
     }
 
     private void buttonPressed(boolean simultan) {
@@ -175,10 +212,10 @@ prepareView();
 
     private boolean evaluateSimultaneous() {
         if (Math.abs(rightClick - leftClick) < SIMULTANEOUS_DIFFERENCE) {
-            testTextView.setText("BOTH");
+            communicatorTextView.setText("BOTH");
             return true;
         } else {
-            testTextView.setText("");
+            communicatorTextView.setText("");
             return false;
         }
     }

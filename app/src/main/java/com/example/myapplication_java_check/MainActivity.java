@@ -2,8 +2,6 @@ package com.example.myapplication_java_check;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     AlphabetGameViewModel alphabetGameViewModel;
 
-    @BindView(R.id.letterTextView)
+    @BindView(R.id.alphabetGameTextView)
     TextView letterTextView;
 
     @Override
@@ -32,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         alphabetGameViewModel = appContainer.alphabetGameViewModel();
     }
 
-    @OnClick(R.id.letterTextView)
+    @OnClick(R.id.alphabetGameTextView)
     public void goToAlphabetGame() {
         startActivity(new Intent(this, AlphabetGameActivity.class));
     }

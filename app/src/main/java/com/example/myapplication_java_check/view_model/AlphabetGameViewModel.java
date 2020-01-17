@@ -23,6 +23,10 @@ public class AlphabetGameViewModel {
 
     }
 
+    public void resetLetter(){
+        currentLetter = -1;
+    }
+
     public char getNextLetter() {
         if (currentLetter == alphabetGame.getAlphabetLength() - 1) {
             currentLetter = 0;
