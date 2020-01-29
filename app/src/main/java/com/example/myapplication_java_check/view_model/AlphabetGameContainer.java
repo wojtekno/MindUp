@@ -9,7 +9,7 @@ import dagger.Component;
 
 @Singleton
 @Component
-public interface AppContainer {
+public interface AlphabetGameContainer {
 
     AlphabetGameViewModel alphabetGameViewModel();
 

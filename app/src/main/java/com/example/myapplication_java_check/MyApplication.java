@@ -2,24 +2,36 @@ package com.example.myapplication_java_check;
 
 import android.app.Application;
 
-import com.example.myapplication_java_check.view_model.AppContainer;
-import com.example.myapplication_java_check.view_model.DaggerAppContainer;
+import com.example.myapplication_java_check.view_model.AlphabetGameContainer;
+//import com.example.myapplication_java_check.view_model.ColorGameContainer;
+import com.example.myapplication_java_check.view_model.ColorGameContainer;
+import com.example.myapplication_java_check.view_model.DaggerAlphabetGameContainer;
+import com.example.myapplication_java_check.view_model.DaggerColorGameContainer;
 
 public class MyApplication extends Application {
 
-    AppContainer appContainer;
+    AlphabetGameContainer alphabetGameContainer;
+    ColorGameContainer colorGameContainer;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        appContainer = createAppContainer();
+        alphabetGameContainer = createAppContainer();
+        colorGameContainer = createColorGameContainer();
     }
 
-    private AppContainer createAppContainer(){
-        return DaggerAppContainer.create();
+    private AlphabetGameContainer createAppContainer(){
+        return DaggerAlphabetGameContainer.create();
     }
 
-    AppContainer getAppContainer() {
-        return appContainer;
+    AlphabetGameContainer getAlphabetGameContainer() {
+        return alphabetGameContainer;
     }
+
+    private ColorGameContainer createColorGameContainer(){
+        return DaggerColorGameContainer.create();
+    }
+
+    ColorGameContainer getColorGameContainer(){return colorGameContainer;}
+
 }

@@ -9,8 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication_java_check.view_model.AlphabetGameContainer;
 import com.example.myapplication_java_check.view_model.AlphabetGameViewModel;
-import com.example.myapplication_java_check.view_model.AppContainer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,8 +56,8 @@ public class AlphabetGameActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-        AppContainer appContainer = ((MyApplication) getApplication()).getAppContainer();
-        alphabetGameViewModel = appContainer.alphabetGameViewModel();
+        AlphabetGameContainer alphabetGameContainer = ((MyApplication) getApplication()).getAlphabetGameContainer();
+        alphabetGameViewModel = alphabetGameContainer.alphabetGameViewModel();
         prepareView();
         setInfoVisible(true);
 
