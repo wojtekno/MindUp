@@ -15,6 +15,7 @@ public class ColorGame {
     @Inject
     public ColorGame (BoardObjFactory boardObjFactory){
         this.boardObjFactory = boardObjFactory;
+        createNextBoard();
     }
 
     public void startGame() {
