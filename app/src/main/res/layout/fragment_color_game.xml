@@ -10,28 +10,39 @@
         android:id="@+id/questionWordTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
         android:text="Orange"
         android:textAppearance="@style/ColorGameFont"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_correct"
+        app:layout_constraintEnd_toEndOf="@id/questionWordTV"
+        app:layout_constraintStart_toStartOf="@id/questionWordTV"
+        app:layout_constraintTop_toTopOf="@id/questionWordTV"
+        app:layout_constraintBottom_toBottomOf="@id/questionWordTV"/>
 
     <LinearLayout
         android:id="@+id/answersLayoutParent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/questionWordTV"
-        >
+
+        app:layout_constraintTop_toBottomOf="@id/questionWordTV">
 
         <LinearLayout
             android:id="@+id/answersLayout"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:gravity="center"
-            android:orientation="horizontal"
-            />
+            android:orientation="horizontal">
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -64,11 +75,21 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/helpingLayout"
+        android:id="@+id/separateWords"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/screenDim" />
+
+    <LinearLayout
+        android:id="@+id/helpingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/separateWords" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
