@@ -1,26 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <TextView
         android:id="@+id/instructionsTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="Choose the name of the word's color"
-        android:textAppearance="@style/ColorGameFont"
         android:layout_gravity="center"
+        android:layout_marginTop="44dp"
         android:gravity="center"
-       />
+        android:text="Choose the name of the word's color"
+        android:textAppearance="@style/ColorGameFont" />
 
     <Button
-        android:layout_marginTop="24dp"
         android:id="@+id/startColorGameBt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="24dp"
         android:text="Start" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/colorGameEasy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/colorGreen"
+            android:text="easy" />
+
+        <Button
+            android:id="@+id/colorGameMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:layout_marginTop="24dp"
+            android:text="medium" />
+
+        <Button
+            android:id="@+id/colorGameHard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/colorRed"
+            android:text="hard" />
+
+    </LinearLayout>
 </LinearLayout>

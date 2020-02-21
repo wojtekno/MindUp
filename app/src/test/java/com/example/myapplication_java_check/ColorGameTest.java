@@ -38,7 +38,8 @@ public class ColorGameTest {
     @Test
     public void testStartColorGame(){
         when(boardObjFactory.create(1,1)).thenReturn(boardObj);
-        colorGame.startGame();
+        colorGame.startGame(1);
+
         assertEquals(0, colorGame.getCorrectAnswers());
         assertEquals(0, colorGame.getIncorrectAnswers());
         assertEquals(0,colorGame.getTotalPoints());
@@ -48,13 +49,11 @@ public class ColorGameTest {
     @Test
     public void testGetTotalPoints_level_1_correct_1(){
         when(boardObjFactory.create(1,1)).thenReturn(boardObj);
+        colorGame.startGame(1);
+
         when(boardObj.evaluateAnswer(3)).thenReturn(true);
-        colorGame.startGame();
         colorGame.evaluateAnswer(3);
         assertEquals(1,colorGame.getTotalPoints());
-        String a = "a";
-        a.concat("ab");
-        Integer.toString(1);
     }
 
 
@@ -62,10 +61,12 @@ public class ColorGameTest {
     public void testGetTotalPoints_level_1_correct_2(){
 
         when(boardObjFactory.create(1,1)).thenReturn(boardObj);
-        colorGame.startGame();
+        colorGame.startGame(1);
         when(boardObj.evaluateAnswer(3)).thenReturn(true);
         colorGame.evaluateAnswer(3);
 
+        when(boardObjFactory.create(2,1)).thenReturn(boardObj);
+        colorGame.createNextBoard();
         when(boardObj.evaluateAnswer(2)).thenReturn(true);
         colorGame.evaluateAnswer(2);
 
@@ -76,17 +77,38 @@ public class ColorGameTest {
     public void testGetTotalPoints_level_1_correct_2_incorrect_1(){
         when(boardObjFactory.create(1,1)).thenReturn(boardObj);
 
-        colorGame.startGame();
+        colorGame.startGame(1);
 
         when(boardObj.evaluateAnswer(0)).thenReturn(true);
         colorGame.evaluateAnswer(0);
+        when(boardObjFactory.create(2,1)).thenReturn(boardObj);
+        colorGame.createNextBoard();
+
+
         when(boardObj.evaluateAnswer(1)).thenReturn(true);
         colorGame.evaluateAnswer(1);
+        when(boardObjFactory.create(3,1)).thenReturn(boardObj);
+        colorGame.createNextBoard();
+
         when(boardObj.evaluateAnswer(1)).thenReturn(false);
         colorGame.evaluateAnswer(1);
 
         assertEquals(1,colorGame.getTotalPoints());
     }
+
+    @Test
+    public void testGetTotalPoints_level_2_correct_1(){
+        when(boardObjFactory.create(1,2)).thenReturn(boardObj);
+
+        colorGame.startGame(2);
+
+        when(boardObj.evaluateAnswer(0)).thenReturn(true);
+        colorGame.evaluateAnswer(0);
+
+        assertEquals(2,colorGame.getTotalPoints());
+    }
+
+
 
 
 }

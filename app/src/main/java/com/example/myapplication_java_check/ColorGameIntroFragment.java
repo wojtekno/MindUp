@@ -19,8 +19,6 @@ import butterknife.Unbinder;
 
 public class ColorGameIntroFragment extends Fragment {
 
-    @BindView(R.id.startColorGameBt)
-    Button startButton;
     @BindView(R.id.instructionsTV)
     TextView instructionTV;
 
@@ -41,13 +39,26 @@ public class ColorGameIntroFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick(R.id.startColorGameBt)
-    public void startGame() {
+    @OnClick(R.id.colorGameEasy)
+    public void startEasyLevel(){
+        startLevel(1);
+    }
+
+    @OnClick(R.id.colorGameMedium)
+    public void startMediumLevel(){
+        startLevel(2);
+    }
+    @OnClick(R.id.colorGameHard)
+    public void startHardLevel(){
+        startLevel(3);
+    }
+
+    private void startLevel(int level){
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         ColorGameFragment colorGameFragment = new ColorGameFragment();
-        fragmentTransaction.add(R.id.parentContainer, colorGameFragment);
-//        fragmentTransaction.replace(R.id.parentContiner,colorGameFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        Bundle bundle = new Bundle();
+        bundle.putInt("level",level);
+        colorGameFragment.setArguments(bundle);
+        fragmentTransaction.add(R.id.parentContainer,colorGameFragment).addToBackStack(null).commit();
     }
 }

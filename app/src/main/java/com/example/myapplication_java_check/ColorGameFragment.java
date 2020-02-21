@@ -64,11 +64,12 @@ public class ColorGameFragment extends Fragment {
 
         ColorGameContainer colorGameContainer = ((MyApplication) getActivity().getApplication()).getColorGameContainer();
         colorGamViewModel = colorGameContainer.colorGameViewModel();
-
+        //todo how to pass arguments to new fragment;
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         initializeColorMap();
+        colorGamViewModel.startColorGame(this.getArguments().getInt("level",1));
         ColorObj[] colors = colorGamViewModel.getCurrentBoard();
         colorTheScreen(colors);
 

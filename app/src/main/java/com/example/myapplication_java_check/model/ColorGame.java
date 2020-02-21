@@ -9,14 +9,16 @@ public class ColorGame {
     private int incorrectAnswers;
     private BoardObj currentBoard;
     private BoardObjFactory boardObjFactory;
+    private int level;
+    private int boardNumber;
 
     @Inject
     public ColorGame(BoardObjFactory boardObjFactory) {
         this.boardObjFactory = boardObjFactory;
-        createNextBoard();
     }
 
-    public void startGame() {
+    public void startGame(int level) {
+        this.level = level;
         createNextBoard();
     }
 
@@ -29,7 +31,7 @@ public class ColorGame {
     }
 
     public int getTotalPoints() {
-        return correctAnswers - incorrectAnswers;
+        return level*(correctAnswers - incorrectAnswers);
     }
 
     public boolean evaluateAnswer(int answer) {
@@ -44,12 +46,8 @@ public class ColorGame {
 
     //TODO get this right - figure out - factory or like this; and how to mock it
     public void createNextBoard() {
-//
-//        ColorObj[] arrayOfColor = {new ColorObj(ColorEnum.GREEN, ColorEnum.WHITE), new ColorObj(ColorEnum.ORANGE, ColorEnum.PURPLE)};
-//        currentBoard = new BoardObj(new ColorObj(ColorEnum.values()[quest],ColorEnum.values()[quest]),arrayOfColor);
-//        currentBoard = new BoardObj(new ColorObj(ColorEnum.WHITE, ColorEnum.GREEN), arrayOfColor);
-
-        currentBoard = boardObjFactory.create(1, 12);
+        boardNumber++;
+        currentBoard = boardObjFactory.create(boardNumber, level);
     }
 
     public BoardObj getCurrentBoard() {

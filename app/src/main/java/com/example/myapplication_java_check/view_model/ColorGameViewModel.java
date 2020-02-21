@@ -16,6 +16,10 @@ public class ColorGameViewModel extends ViewModel {
         this.colorGame = colorGame;
     }
 
+    public void startColorGame(int level){
+        colorGame.startGame(level);
+    }
+
     public ColorObj[] getCurrentBoard() {
         ColorObj[] colorAnswers = colorGame.getCurrentBoard().getColorAnswers();
         ColorObj[] colors = new ColorObj[colorAnswers.length + 1];

@@ -15,16 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_correct"
-        app:layout_constraintEnd_toEndOf="@id/questionWordTV"
-        app:layout_constraintStart_toStartOf="@id/questionWordTV"
-        app:layout_constraintTop_toTopOf="@id/questionWordTV"
-        app:layout_constraintBottom_toBottomOf="@id/questionWordTV"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/answersLayoutParent"
@@ -89,7 +80,6 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/separateWords" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
