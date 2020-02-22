@@ -108,6 +108,30 @@ public class ColorGameTest {
         assertEquals(2,colorGame.getTotalPoints());
     }
 
+    @Test
+    public void testGetTotalPoints_level3_correct3_incorrect1(){
+        when(boardObjFactory.create(1,3)).thenReturn(boardObj);
+
+        colorGame.startGame(3);
+
+        when(boardObj.evaluateAnswer(0)).thenReturn(true);
+        colorGame.evaluateAnswer(0);
+
+        when(boardObjFactory.create(2,3)).thenReturn(boardObj);
+        when(boardObj.evaluateAnswer(0)).thenReturn(true);
+        colorGame.evaluateAnswer(0);
+
+        when(boardObjFactory.create(3,3)).thenReturn(boardObj);
+        when(boardObj.evaluateAnswer(3)).thenReturn(false);
+        colorGame.evaluateAnswer(3);
+
+        when(boardObjFactory.create(4,3)).thenReturn(boardObj);
+        when(boardObj.evaluateAnswer(2)).thenReturn(true);
+        colorGame.evaluateAnswer(2);
+
+        assertEquals(6,colorGame.getTotalPoints());
+    }
+
 
 
 

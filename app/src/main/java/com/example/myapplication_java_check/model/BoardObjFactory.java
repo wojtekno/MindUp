@@ -42,7 +42,7 @@ public class BoardObjFactory {
      */
 
     private ColorObj[] createAnswers(ColorObj question, int numberOfAnswers, int level) {
-        int[] randomNames = prepareNamesArray(question.getmColor().ordinal(), question.getmColor().ordinal(), numberOfAnswers);
+        int[] randomNames = prepareNamesArray(question.getmColor().ordinal(), question.getmName().ordinal(), numberOfAnswers);
 
         int[] randomColors;
         if (level == 3 && numberOfAnswers>3) {

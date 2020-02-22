@@ -56,7 +56,7 @@ public class BoardObjFactoryTest {
     @Test
     public void testRandomlyRearrangeArray(){
         BoardObj boardObj = boardObjFactory.create(1,1);
-        int[] originalArray = boardObjFactory.prepareNamesArray(0,0,8);
+        int[] originalArray = boardObjFactory.prepareNamesArray(0,1,8);
         int[] reorderedArray = boardObjFactory.reorderArrayRandomly(originalArray);
 
         assertEquals(originalArray.length,reorderedArray.length);
@@ -77,6 +77,9 @@ public class BoardObjFactoryTest {
 
         assertEquals(question.getmColor(),question.getmName());
         assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmColor())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmColor())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmName())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmName())).count());
         assertEquals(3,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
         assertEquals(3, Arrays.stream(answers).filter(x->x.getmName().equals(x.getmColor())).count());
         assertEquals(3,Arrays.stream(answers).map(x->x.getmColor().ordinal()).distinct().count());
@@ -91,7 +94,9 @@ public class BoardObjFactoryTest {
 
         assertEquals(question.getmColor(),question.getmName());
         assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmColor())).count());
-        assertEquals(4,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmColor())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmName())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmName())).count());        assertEquals(4,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
         assertEquals(4, Arrays.stream(answers).filter(x->x.getmName().equals(x.getmColor())).count());
         assertEquals(4,Arrays.stream(answers).map(x->x.getmColor().ordinal()).distinct().count());
 
@@ -105,7 +110,9 @@ public class BoardObjFactoryTest {
 
         assertEquals(question.getmColor(),question.getmName());
         assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmColor())).count());
-        assertEquals(5,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmColor())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmName())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmName())).count());        assertEquals(5,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
         assertEquals(5, Arrays.stream(answers).filter(x->x.getmName().equals(x.getmColor())).count());
         assertEquals(5,Arrays.stream(answers).map(x->x.getmColor().ordinal()).distinct().count());
 
@@ -119,7 +126,9 @@ public class BoardObjFactoryTest {
 
         assertEquals(question.getmColor(),question.getmName());
         assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmColor())).count());
-        assertEquals(6,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmColor())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmName())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmName())).count());        assertEquals(6,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
         assertEquals(6, Arrays.stream(answers).filter(x->x.getmName().equals(x.getmColor())).count());
         assertEquals(6,Arrays.stream(answers).map(x->x.getmColor().ordinal()).distinct().count());
 
@@ -133,7 +142,9 @@ public class BoardObjFactoryTest {
 
         assertEquals(question.getmColor(),question.getmName());
         assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmColor())).count());
-        assertEquals(7,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmColor())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmName())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmName())).count());        assertEquals(7,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
         assertEquals(7, Arrays.stream(answers).filter(x->x.getmName().equals(x.getmColor())).count());
         assertEquals(7,Arrays.stream(answers).map(x->x.getmColor().ordinal()).distinct().count());
 
@@ -147,7 +158,9 @@ public class BoardObjFactoryTest {
 
         assertEquals(question.getmColor(),question.getmName());
         assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmColor())).count());
-        assertEquals(8,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmColor())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmName())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmName())).count());        assertEquals(8,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
         assertEquals(8, Arrays.stream(answers).filter(x->x.getmName().equals(x.getmColor())).count());
         assertEquals(8,Arrays.stream(answers).map(x->x.getmColor().ordinal()).distinct().count());
 
@@ -161,7 +174,9 @@ public class BoardObjFactoryTest {
 
         assertEquals(question.getmColor(),question.getmName());
         assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmColor())).count());
-        assertEquals(3,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmColor())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmName())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmName())).count());        assertEquals(3,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
         assertEquals(3, Arrays.stream(answers).filter(x->x.getmName().equals(x.getmColor())).count());
         assertEquals(3,Arrays.stream(answers).map(x->x.getmColor().ordinal()).distinct().count());
 
@@ -173,11 +188,13 @@ public class BoardObjFactoryTest {
         ColorObj question = boardObj.getColorQuestion();
         ColorObj[] answers = boardObj.getColorAnswers();
 
-//        assertEquals(question.getmColor(),question.getmName());
         assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmColor())).count());
-        assertEquals(4,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
-        assertNotEquals(4, Arrays.stream(answers).filter(x->x.getmName().equals(x.getmColor())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmColor())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmName().equals(question.getmName())).count());
+        assertEquals(1,Arrays.stream(answers).filter(x->x.getmColor().equals(question.getmName())).count());        assertEquals(4,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
+//        assertNotEquals(4, Arrays.stream(answers).filter(x->x.getmName().equals(x.getmColor())).count());
         assertEquals(4,Arrays.stream(answers).map(x->x.getmColor().ordinal()).distinct().count());
+        assertEquals(4,Arrays.stream(answers).map(x->x.getmName().ordinal()).distinct().count());
 
     }
 }
