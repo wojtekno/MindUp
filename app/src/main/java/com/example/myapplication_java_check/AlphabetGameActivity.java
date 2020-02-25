@@ -18,6 +18,7 @@ import butterknife.OnClick;
 
 public class AlphabetGameActivity extends AppCompatActivity {
 
+    private static final long ALPHABET_GAME_TIME_MILLISEC = 10000;
     @BindView(R.id.leftButton)
     Button leftB;
     @BindView(R.id.rightButton)
@@ -39,9 +40,10 @@ public class AlphabetGameActivity extends AppCompatActivity {
     TextView communicatorTextView;
 
 
-    final long GAME_TIME = 10000;
+    final long GAME_TIME_MILISEC = 10100;
     private final int SIMULTANEOUS_DIFFERENCE = 200;
 
+    //    CountDownTimer currentCountDownTimer;
     AlphabetGameViewModel alphabetGameViewModel;
     long leftClick = 0;
     long rightClick = 0;
@@ -73,8 +75,6 @@ public class AlphabetGameActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-//        prepareView();
-//        countDownStart();
     }
 
     private void prepareView() {
@@ -115,18 +115,18 @@ public class AlphabetGameActivity extends AppCompatActivity {
         handTextView.setText((Character.toString(alphabetGameViewModel.generateHand())));
 
 
-        new CountDownTimer(GAME_TIME, 1000) {
+//        currentCountDownTimer =
+        new CountDownTimer(GAME_TIME_MILISEC, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                if (millisUntilFinished < 4000) {
+                if (millisUntilFinished < 10000) {
                     communicatorTextView.setText(String.valueOf((int) millisUntilFinished / 1000));
                 }
             }
 
             @Override
             public void onFinish() {
-                communicatorTextView.setText("Finish");
                 stopGame();
             }
         }.start();
@@ -138,7 +138,6 @@ public class AlphabetGameActivity extends AppCompatActivity {
         leftB.setClickable(false);
         rightB.setClickable(false);
         communicatorTextView.setText("Game\nfinished");
-        delayErasingTextView(communicatorTextView);
         startB.setVisibility(View.VISIBLE);
         infoB.setVisibility(View.VISIBLE);
     }
@@ -164,34 +163,18 @@ public class AlphabetGameActivity extends AppCompatActivity {
     }
 
     private void countDownStart() {
-        new CountDownTimer(3000, 1000) {
+//        currentCountDownTimer =
+        new CountDownTimer(3100, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
                 communicatorTextView.setText(String.valueOf((int) millisUntilFinished / 1000));
-
             }
 
             @Override
             public void onFinish() {
                 communicatorTextView.setText("START");
-                delayErasingTextView(communicatorTextView);
                 startGame();
-
-            }
-        }.start();
-    }
-
-    private void delayErasingTextView(TextView textView) {
-        new CountDownTimer(1000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                textView.setText("");
             }
         }.start();
     }

@@ -6,34 +6,74 @@
     android:layout_height="match_parent"
     android:background="@color/colorGameBackground">
 
-    <TextView
-        android:id="@+id/questionWordTV"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/clockLayout"
+        android:layout_width="50dp"
+        android:layout_marginRight="16dp"
         android:layout_height="wrap_content"
-        android:text="Orange"
-        android:textAppearance="@style/ColorGameFont"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/colorGameForeground"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/clockText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="60" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/questionFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:weightSum="3"
+        app:layout_constraintTop_toBottomOf="@id/clockLayout">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@drawable/border"
+            android:backgroundTint="@color/colorGameForeground"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/questionWordTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="@color/colorBlack"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="0.1"
+                android:text="Orange"
+                android:textAppearance="@style/ColorGameFont"
+                android:textColor="@color/colorRed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/answersLayoutParent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/colorGameForeground"
         android:orientation="vertical"
-
-        app:layout_constraintTop_toBottomOf="@id/questionWordTV">
-
-        <LinearLayout
-            android:id="@+id/answersLayout"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-        </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@id/questionFrame">
     </LinearLayout>
 
     <LinearLayout

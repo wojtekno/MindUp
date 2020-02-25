@@ -1,28 +1,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@drawable/border"
+    android:backgroundTint="@color/colorBackgroundVisible">
 
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-        android:layout_alignRight="@+id/imageView1"
         android:layout_centerVertical="true"
-        android:text="TextView Text Above ImageView"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/colorGameForeground"
         android:gravity="center"
-        android:textColor="@color/colorRed" />
+        android:text="Text View Text View"
+        android:textColor="@color/colorBlack"
+        android:textSize="32sp"
+        />
 
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_correct" />
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imageView1"-->
+    <!--        android:layout_width="100dp"-->
+    <!--        android:layout_height="30dp"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:src="@drawable/ic_correct" />-->
 
 </RelativeLayout>

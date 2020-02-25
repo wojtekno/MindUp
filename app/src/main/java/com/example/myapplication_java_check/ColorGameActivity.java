@@ -12,6 +12,9 @@ public class ColorGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_game);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.parentContainer,new ColorGameIntroFragment()).commit();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.parentContainer,new ColorGameIntroFragment())
+                .commit();
     }
+
 }

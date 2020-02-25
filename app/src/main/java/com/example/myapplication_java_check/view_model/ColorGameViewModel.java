@@ -39,4 +39,8 @@ public class ColorGameViewModel extends ViewModel {
     public boolean evaluateAnswer(int answerValue) {
         return colorGame.evaluateAnswer(answerValue);
     }
+
+    public int getTotalPoints() {
+        return colorGame.getTotalPoints();
+    }
 }

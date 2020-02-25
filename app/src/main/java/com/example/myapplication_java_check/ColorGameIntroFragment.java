@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -59,6 +58,8 @@ public class ColorGameIntroFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putInt("level",level);
         colorGameFragment.setArguments(bundle);
-        fragmentTransaction.add(R.id.parentContainer,colorGameFragment).addToBackStack(null).commit();
+        fragmentTransaction.replace(R.id.parentContainer,colorGameFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

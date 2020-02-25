@@ -1,6 +1,7 @@
 package com.example.myapplication_java_check;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myapplication_java_check.model.ColorEnum;
 import com.example.myapplication_java_check.model.ColorObj;
@@ -30,6 +32,8 @@ public class ColorGameFragment extends Fragment {
 
     private final int ANSWER_MARGIN = 16;
     private final int ANSWER_TIME_DELAY = 300;
+    private final int GAME_DURATION_MILLISECONDS = 60100;
+    private final int TEST_GAME_DURATION_MILLISECONDS = 3100;
 
     @BindView(R.id.questionWordTV)
     TextView questionWord;
@@ -46,14 +50,19 @@ public class ColorGameFragment extends Fragment {
     TextView screenWidthValueTV;
     @BindView(R.id.layoutWidthValue)
     TextView layoutWidthValueTV;
+    @BindView(R.id.clockText)
+    TextView clockTV;
 
-    LinearLayout currentAnswerLinearLayout;
 
-    Unbinder unbinder;
-    private ColorGameViewModel colorGamViewModel;// = new ViewModelProvider(requireActivity()).get(ColorGameViewModel.class);
+    private LinearLayout currentAnswerLinearLayout;
+
+    private CountDownTimer currentCountDownTimer;
+    private Unbinder unbinder;
+    private ColorGameViewModel colorGamViewModel;
     private DisplayMetrics metrics;
 
-    HashMap<ColorEnum, Integer> colorMap = new HashMap<>();
+    private HashMap<ColorEnum, Integer> colorMap = new HashMap<>();
+    private boolean isGameFinished;
 
     @Nullable
     @Override
@@ -64,21 +73,38 @@ public class ColorGameFragment extends Fragment {
 
         ColorGameContainer colorGameContainer = ((MyApplication) getActivity().getApplication()).getColorGameContainer();
         colorGamViewModel = colorGameContainer.colorGameViewModel();
-        //todo how to pass arguments to new fragment;
         metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         initializeColorMap();
-        colorGamViewModel.startColorGame(this.getArguments().getInt("level",1));
-        ColorObj[] colors = colorGamViewModel.getCurrentBoard();
-        colorTheScreen(colors);
-
+        colorGamViewModel.startColorGame(this.getArguments().getInt("level", 1));
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        currentCountDownTimer = new CountDownTimer(1100, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                questionWord.setText(String.valueOf(((int) millisUntilFinished / 1000)));
+            }
+
+            @Override
+            public void onFinish() {
+                ColorObj[] colors = colorGamViewModel.getCurrentBoard();
+                colorTheScreen(colors);
+                countDownTheGame();
+
+            }
+        }.start();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        currentCountDownTimer.cancel();
         unbinder.unbind();
     }
 
@@ -90,16 +116,49 @@ public class ColorGameFragment extends Fragment {
     }
 
     private void colorTheScreen(ColorObj[] colors) {
-        helpingLayout.removeAllViews();
-        separateWords.removeAllViews();
-        prepareQuestionTV(colors[0]);
-        //todo destroy all of the views howto?
-        answersLayoutParent.removeAllViewsInLayout();
-        currentAnswerLinearLayout = null;
-        for (int i = 1; i < colors.length; i++) {
-            TextView answer = prepareAnswerTV(colors[i]);
-            placeAnswerTVOnTheScreen(answer);
+        if (!isGameFinished) {
+            helpingLayout.removeAllViews();
+            separateWords.removeAllViews();
+            prepareQuestionTV(colors[0]);
+            //todo - how to destroy all of the views?
+            answersLayoutParent.removeAllViewsInLayout();
+            currentAnswerLinearLayout = null;
+            for (int i = 1; i < colors.length; i++) {
+                TextView answer = prepareAnswerTV(colors[i]);
+                placeAnswerTVOnTheScreen(answer);
+            }
         }
+    }
+
+    private void countDownTheGame() {
+
+        currentCountDownTimer = new CountDownTimer(TEST_GAME_DURATION_MILLISECONDS, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                clockTV.setText(String.valueOf(((int) millisUntilFinished / 1000)));
+            }
+
+            @Override
+            public void onFinish() {
+                isGameFinished = true;
+                clockTV.setText("STOP");
+                setAnswersClickable(false);
+//                answersLayoutParent.setOnTouchListener((view, event) -> true);
+
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                Bundle bundle = new Bundle();
+                bundle.putInt("SCORE", colorGamViewModel.getTotalPoints());
+
+                ScoreFragment fragment = new ScoreFragment();
+                fragment.setArguments(bundle);
+                transaction.add(R.id.parentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+
+        }.start();
     }
 
     private TextView prepareAnswerTV(ColorObj colorObj) {
@@ -188,6 +247,12 @@ public class ColorGameFragment extends Fragment {
         return currentAnswerLinearLayout.getMeasuredWidth() + textViewWidth + 2 * ANSWER_MARGIN < metrics.widthPixels;
     }
 
+    /**
+     * Method used for developing, testing purposes.
+     *
+     * @param viewsWidth
+     */
+    //TODO delete before releasing to production
     private void addHelpingTextView(int viewsWidth) {
         TextView helptext1 = new TextView(getActivity());
         TextView helptext2 = new TextView(getActivity());
@@ -199,6 +264,10 @@ public class ColorGameFragment extends Fragment {
         updateLinearLayoutWidth();
     }
 
+    /**
+     * Method used for developing, testing purposes.
+     */
+    //TODO delete before releasing to production
     private void updateLinearLayoutWidth() {
         DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);

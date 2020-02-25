@@ -3,7 +3,6 @@ package com.example.myapplication_java_check;
 import android.app.Application;
 
 import com.example.myapplication_java_check.view_model.AlphabetGameContainer;
-//import com.example.myapplication_java_check.view_model.ColorGameContainer;
 import com.example.myapplication_java_check.view_model.ColorGameContainer;
 import com.example.myapplication_java_check.view_model.DaggerAlphabetGameContainer;
 import com.example.myapplication_java_check.view_model.DaggerColorGameContainer;

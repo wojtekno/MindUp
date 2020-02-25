@@ -13,7 +13,10 @@
     <color name="colorGreen">#1B5E20</color>
     <color name="colorBlack">#000000</color>
 
-    <color name="colorGameBackground">#BDBDBD</color>
+    <color name="colorGameForeground">#BDBDBD</color>
+    <color name="colorGameBackground">#9E9E9E</color>
+    <color name="colorBackgroundVisible">#9A1B1919</color>
+
 
     <array name="wordsColors">
         <item>@color/colorWhite</item>
