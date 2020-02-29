@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         getSupportActionBar().hide();
-        AlphabetGameContainer alphabetGameContainer = ((MyApplication) getApplication()).getAlphabetGameContainer();
-        alphabetGameViewModel = alphabetGameContainer.alphabetGameViewModel();
+//        AlphabetGameContainer alphabetGameContainer = ((MyApplication) getApplication()).getAlphabetGameContainer();
+//        alphabetGameViewModel = alphabetGameContainer.alphabetGameViewModel();
 //        ((MyApplication)getApplication()).getColorGameContainer().colorGame();
     }
 

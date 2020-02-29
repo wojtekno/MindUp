@@ -84,15 +84,12 @@ public class AlphabetGameActivity extends AppCompatActivity {
         leftB.setClickable(false);
         rightB.setClickable(false);
 
-        upperDescriptionTextView.setText("Reading out loud\n the alphabet letter");
+        upperDescriptionTextView.setText(getResources().getString(R.string.alphabet_game_instruction_p1));
         lowerDescriptionTextView.setVisibility(View.VISIBLE);
-        lowerDescriptionTextView.setText("Press as fast as you can corresponding button\n" +
-                "Left for \"L\"\n" +
-                "Right for \"R\"\n" +
-                "Both at the same time for \"B\"");
+        lowerDescriptionTextView.setText(getResources().getString(R.string.alphabet_game_instruction_p2));
 
-        letterTextView.setText("J");
-        handTextView.setText("B");
+        letterTextView.setText(getResources().getString(R.string.alphabet_game_intro_letter));
+        handTextView.setText(getResources().getString(R.string.alphabet_game_intro_hand));
 
     }
 
@@ -137,7 +134,7 @@ public class AlphabetGameActivity extends AppCompatActivity {
     public void stopGame() {
         leftB.setClickable(false);
         rightB.setClickable(false);
-        communicatorTextView.setText("Game\nfinished");
+        communicatorTextView.setText(getResources().getString(R.string.alphabet_game_game_finished));
         startB.setVisibility(View.VISIBLE);
         infoB.setVisibility(View.VISIBLE);
     }
@@ -173,7 +170,7 @@ public class AlphabetGameActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                communicatorTextView.setText("START");
+                communicatorTextView.setText(getResources().getString(R.string.start_counter_start));
                 startGame();
             }
         }.start();

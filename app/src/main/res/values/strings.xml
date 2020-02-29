@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">My Application_java_check</string>
+    <string name="app_name">Mind up</string>
+    <string name="color_game_clock_stop">STOP</string>
+    <string name="alphabet_game_instruction_p1">Reading out loud  the alphabet letter</string>
+    <string name="alphabet_game_instruction_p2">Press as fast as you can corresponding button Left for \"L\" Right for \"R\" Both at the same time for \"B\"</string>
+    <string name="alphabet_game_intro_letter">J</string>
+    <string name="alphabet_game_intro_hand">B</string>
+    <string name="alphabet_game_game_finished">Game finished</string>
+    <string name="start_counter_start">START</string>
+    <string name="color_game_score">You scored: %d</string>
 </resources>

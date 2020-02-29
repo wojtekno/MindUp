@@ -8,6 +8,7 @@ public class AlphabetGame {
     private final char RIGHT = 'R';
     private final char LEFT = 'L';
     private final char BOTH = 'B';
+    //TODO find how to make it so it's multilingual
     private final char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 
     @Inject

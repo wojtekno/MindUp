@@ -18,7 +18,7 @@ public class ScoreFragment extends Fragment {
 
 
     @BindView(R.id.textView1)
-    private TextView message;
+    TextView message;
 
     private Unbinder unbinder;
 
@@ -30,8 +30,9 @@ public class ScoreFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.trial_layput, container, false);
         unbinder = ButterKnife.bind(this, rootView);
 
-        int score = getArguments().getInt("SCORE");
-        message.setText(String.format("You scored: %d", score));
+        int score = getArguments().getInt("score");
+        //TODO hot to extract, deal with this kind of strings?
+        message.setText(String.format(getString(R.string.color_game_score), score));
 
         return rootView;
     }

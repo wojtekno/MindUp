@@ -142,13 +142,14 @@ public class ColorGameFragment extends Fragment {
             @Override
             public void onFinish() {
                 isGameFinished = true;
-                clockTV.setText("STOP");
+                clockTV.setText(getResources().getString(R.string.color_game_clock_stop));
                 setAnswersClickable(false);
 //                answersLayoutParent.setOnTouchListener((view, event) -> true);
 
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 Bundle bundle = new Bundle();
-                bundle.putInt("SCORE", colorGamViewModel.getTotalPoints());
+                //TODO should I extract this to strings.xml ?  and keys in general?
+                bundle.putInt("score", colorGamViewModel.getTotalPoints());
 
                 ScoreFragment fragment = new ScoreFragment();
                 fragment.setArguments(bundle);
