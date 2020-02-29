@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication_java_check">
+    package="com.nowak.wjw.mind_up">
 
     <application
         android:allowBackup="true"
@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".MyApplication">
-        <activity android:name=".MainActivity">
+        android:name="com.nowak.wjw.mind_up.MyApplication">
+        <activity android:name="com.nowak.wjw.mind_up.MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,9 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="AlphabetGameActivity"
+        <activity android:name="com.nowak.wjw.mind_up.AlphabetGameActivity"
             android:screenOrientation="landscape"> </activity>
-        <activity android:name=".ColorGameActivity"></activity>
+        <activity android:name="com.nowak.wjw.mind_up.ColorGameActivity"></activity>
     </application>
 
 </manifest>
